@@ -2,11 +2,35 @@ import streamlit as st
 
 # Define emission factors (example values, replace with accurate data)
 EMISSION_FACTORS = {
+    "United States": {
+        "Transportation": 0.4,  # kgCO2/mile
+        "Electricity": 0.4,  # kgCO2/kWh
+        "Diet": 2.5,  # kgCO2/meal, 2.5kgCO2/kg
+        "Waste": 0.6  # kgCO2/kg
+    },
+    "China": {
+        "Transportation": 0.2,  # kgCO2/km
+        "Electricity": 0.7,  # kgCO2/kWh
+        "Diet": 1.5,  # kgCO2/meal, 2.5kgCO2/kg
+        "Waste": 0.8  # kgCO2/kg
+    },
     "India": {
-        "Transportation": 0.14,  # kgCO2/km
-        "Electricity": 0.82,  # kgCO2/kWh
-        "Diet": 1.25,  # kgCO2/meal, 2.5kgco2/kg
-        "Waste": 0.1  # kgCO2/kg
+        "Transportation": 0.1,  # kgCO2/km
+        "Electricity": 0.6,  # kgCO2/kWh
+        "Diet": 1.0,  # kgCO2/meal, 2.5kgCO2/kg
+        "Waste": 0.4  # kgCO2/kg
+    },
+    "Germany": {
+        "Transportation": 0.15,  # kgCO2/km
+        "Electricity": 0.3,  # kgCO2/kWh
+        "Diet": 2.0,  # kgCO2/meal, 2.5kgCO2/kg
+        "Waste": 0.5  # kgCO2/kg
+    },
+    "Brazil": {
+        "Transportation": 0.3,  # kgCO2/km
+        "Electricity": 0.2,  # kgCO2/kWh
+        "Diet": 1.8,  # kgCO2/meal, 2.5kgCO2/kg
+        "Waste": 0.7  # kgCO2/kg
     }
 }
 
@@ -18,7 +42,7 @@ st.title("Personal Carbon Calculator App ⚠️")
 
 # User inputs
 st.subheader("🌍 Your Country")
-country = st.selectbox("Select", ["India"])
+country = st.selectbox("Select", ["India","Brazil","Germany","China","United States"])
 
 col1, col2 = st.columns(2)
 
@@ -81,4 +105,3 @@ if st.button("Calculate CO2 Emissions"):
         st.subheader("Total Carbon Footprint")
         st.success(f"🌍 Your total carbon footprint is: {total_emissions} tonnes CO2 per year")
         st.warning("In 2021, CO2 emissions per capita for India was 1.9 tons of CO2 per capita. Between 1972 and 2021, CO2 emissions per capita of India grew substantially from 0.39 to 1.9 tons of CO2 per capita rising at an increasing annual rate that reached a maximum of 9.41% in 2021")
-
